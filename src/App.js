@@ -14,7 +14,7 @@ const html =
 const App = () => {
     return (
         <>
-            <Nav/>
+            <Nav pEvent={txt=>alert(txt)}/>
             {html}
         </>
     );
