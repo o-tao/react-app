@@ -1,24 +1,23 @@
 import './App.css';
+import Nav from './Nav';
+import Page1 from './Page1';
+import Page2 from './Page2';
+import Page3 from './Page3';
+
+const html =
+    <>
+        <Page1/>
+        <Page2/>
+        <Page3/>
+    </>;
 
 const App = () => {
-  return (
-      <>
-        <nav>
-          <a href="#page1">PAGE1</a>
-          <a href="#page2">PAGE2</a>
-          <a href="#page3">PAGE3</a>
-        </nav>
-        <section className="content" id="page1">
-          <h1 className="body">페이지1번 내용</h1>
-        </section>
-        <section className="content" id="page2">
-          <h1 className="body">페이지2번 내용</h1>
-        </section>
-        <section className="content" id="page3">
-          <h1 className="body">페이지3번 내용</h1>
-        </section>
-      </>
-  );
+    return (
+        <>
+            <Nav/>
+            {html}
+        </>
+    );
 }
 
 export default App
