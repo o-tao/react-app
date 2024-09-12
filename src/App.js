@@ -4,6 +4,7 @@ import Page1 from './Page1';
 import Page2 from './Page2';
 import Page3 from './Page3';
 // import {useState, useEffect} from 'react'
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 
 // const html =
 //     <>
@@ -40,6 +41,15 @@ const App = () => {
         <>
             {/*<Nav pEvent={txt => pageEvent(txt)}/>*/}
             {/*{page}*/}
+
+            <Nav/>
+            <BrowserRouter>
+                <Routes>
+                    <Route path={'/page1'} element={<Page1/>}></Route>
+                    <Route path={'/page2'} element={<Page2/>}></Route>
+                    <Route path={'/page3'} element={<Page3/>}></Route>
+                </Routes>
+            </BrowserRouter>
         </>
     );
 }

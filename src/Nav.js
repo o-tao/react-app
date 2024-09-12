@@ -1,12 +1,12 @@
-const Nav = props => {
+const Nav = () => {
 
     // const pageEvent = () => {alert("PAGE2");}
     // const data = txt => {alert(txt);};
 
     const array = [
-        {href: "#page1", txt: "PAGE1"},
-        {href: "#page2", txt: "PAGE2"},
-        {href: "#page3", txt: "PAGE3"}
+        {href: "/page1", txt: "PAGE1"},
+        {href: "/page2", txt: "PAGE2"},
+        {href: "/page3", txt: "PAGE3"}
     ];
 
     return (
@@ -24,7 +24,10 @@ const Nav = props => {
             {/*<a href={"#page3"} onClick={() => props.pEvent('PAGE3')}>PAGE3</a>*/}
 
             {/* 방식5 : 정렬 사용 */}
-            {array.map(row => <a href={row.href} onClick={() => props.pEvent(row.txt)} key={row.txt}>{row.txt}</a>)}
+            {/*{array.map(row => <a href={row.href} onClick={() => props.pEvent(row.txt)} key={row.txt}>{row.txt}</a>)}*/}
+
+            {/* 방식6 : 정렬 사용 (Router) */}
+            {array.map(row => <a href={row.href} key={row.txt}>{row.txt}</a>)}
         </nav>
     );
 }
