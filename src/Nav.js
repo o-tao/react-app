@@ -1,6 +1,3 @@
-import {useEffect} from "react";
-import {useParams} from "react-router-dom";
-
 const Nav = () => {
 
     // const pageEvent = () => {alert("PAGE2");}
@@ -8,7 +5,7 @@ const Nav = () => {
 
     const array = [
         {href: "/page1/hello", txt: "PAGE1"},
-        {href: "/page2", txt: "PAGE2"},
+        {href: "/page2?txt=react", txt: "PAGE2"},
         {href: "/page3", txt: "PAGE3"}
     ];
 
