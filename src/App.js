@@ -45,7 +45,7 @@ const App = () => {
             <Nav/>
             <BrowserRouter>
                 <Routes>
-                    <Route path={'/page1'} element={<Page1/>}></Route>
+                    <Route path={'/page1/:txt'} element={<Page1/>}></Route>
                     <Route path={'/page2'} element={<Page2/>}></Route>
                     <Route path={'/page3'} element={<Page3/>}></Route>
                 </Routes>

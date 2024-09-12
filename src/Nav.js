@@ -1,10 +1,13 @@
+import {useEffect} from "react";
+import {useParams} from "react-router-dom";
+
 const Nav = () => {
 
     // const pageEvent = () => {alert("PAGE2");}
     // const data = txt => {alert(txt);};
 
     const array = [
-        {href: "/page1", txt: "PAGE1"},
+        {href: "/page1/hello", txt: "PAGE1"},
         {href: "/page2", txt: "PAGE2"},
         {href: "/page3", txt: "PAGE3"}
     ];
