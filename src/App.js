@@ -34,7 +34,8 @@ const App = () => {
         } else if (document.location.hash === "#page3") {
             pageEvent('PAGE3');
         }
-        }, []);
+    }, []);
+
     return (
         <>
             <Nav pEvent={txt => pageEvent(txt)}/>
