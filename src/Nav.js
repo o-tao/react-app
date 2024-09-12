@@ -6,7 +6,7 @@ const Nav = () => {
     const array = [
         {href: "/page1/hello", txt: "PAGE1"},
         {href: "/page2?txt=react", txt: "PAGE2"},
-        {href: "/page3", txt: "PAGE3"}
+        {href: "/page3/world", txt: "PAGE3"}
     ];
 
     return (
