@@ -3,7 +3,7 @@ import Nav from './Nav';
 import Page1 from './Page1';
 import Page2 from './Page2';
 import Page3 from './Page3';
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 
 // const html =
 //     <>
@@ -15,7 +15,7 @@ import {useState} from 'react'
 const App = () => {
     let [page, setPage] = useState(<Page1/>);
 
-    const pageEven = txt => {
+    const pageEvent = txt => {
         console.log(txt);
         if (txt === "PAGE1") {
             setPage(<Page1/>);
@@ -26,9 +26,18 @@ const App = () => {
         }
     }
 
+    useEffect(() => {
+        if (document.location.hash === "#page1") {
+            pageEvent('PAGE1');
+        } else if (document.location.hash === "#page2") {
+            pageEvent('PAGE2');
+        } else if (document.location.hash === "#page3") {
+            pageEvent('PAGE3');
+        }
+        }, []);
     return (
         <>
-            <Nav pEvent={txt => pageEven(txt)}/>
+            <Nav pEvent={txt => pageEvent(txt)}/>
             {page}
         </>
     );
