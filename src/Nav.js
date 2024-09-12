@@ -24,7 +24,7 @@ const Nav = props => {
             {/*<a href={"#page3"} onClick={() => props.pEvent('PAGE3')}>PAGE3</a>*/}
 
             {/* 방식5 : 정렬 사용 */}
-            {array.map(row => <a href={row.href} onClick={() => props.pEvent(row.txt)}>{row.txt}</a>)}
+            {array.map(row => <a href={row.href} onClick={() => props.pEvent(row.txt)} key={row.txt}>{row.txt}</a>)}
         </nav>
     );
 }
