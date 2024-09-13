@@ -1,13 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './study/Study01';
+// import App from './App';
+// import Study from './study/Study01';
+import Board from './board/Board';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    {/*<App />*/}
+    {/*<Study />*/}
+    <Board />
   </React.StrictMode>
 );
 
