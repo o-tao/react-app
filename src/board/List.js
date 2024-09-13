@@ -25,7 +25,7 @@ const List = () => {
                     array.map((row) => (
                         <a className={"list-group-item list-group-item-action"}
                            key={row.id}
-                           href={"/detail/1" + row.id}>
+                           href={"/detail/" + row.id}>
                             {row.title}
                         </a>
                     ))
