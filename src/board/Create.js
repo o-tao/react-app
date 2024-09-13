@@ -15,16 +15,25 @@ const Create = () => {
     const submitEvent = e => {
         e.preventDefault();
 
-        let params = {
-            id: (array.length + 1), // insert 시 id값 +1
-            title: e.target.board_title.value,
-            content: e.target.board_content.value
+        // 신규 작성글에 대한 id 생성
+        let newId = 0;
+        if (array.length === 0) {
+            // 첫 글 작성 시 id를 1로 처리
+            newId = 1;
+        } else {
+            // 글이 있을 경우 마지막 id를 찾아 1증가 처리
+            newId = (array[array.length - 1].id) + 1;
         }
+        let params = {
+                id: newId, //(array.length + 1), // insert 시 id값 +1
+                title: e.target.board_title.value,
+                content: e.target.board_content.value
+            }
 
-        console.log(params, array, [...array, params]);
+            console.log(params, array, [...array, params]);
 
         const newArray = [...array, params];
-        localStorage.setItem('data', JSON.stringify(newArray));
+    localStorage.setItem('data', JSON.stringify(newArray));
 
         navigate(`/detail/${params.id}`);
     }
