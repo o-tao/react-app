@@ -51,7 +51,16 @@ const Detail = () => {
     }
 
     const deleteEvent = () => {
-        console.log(`${id} 대상을 삭제 합니다.`);
+        let newArray = [];
+        array.forEach(row => {
+            if (row.id !== Number(id)) {
+                // 삭제 대상 id가 아닌 경우는 기존 데이터 넣기
+                newArray = [...newArray, row];
+            }
+        });
+        // 변경된 배열 다시 저장
+        setArray(newArray)
+        localStorage.setItem('data', JSON.stringify(newArray));
     }
 
     // let title = "제목";
