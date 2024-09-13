@@ -3,6 +3,9 @@ const List = () => {
         {id: 1, title: "제목1"},
         {id: 2, title: "제목2"}
     ];
+
+    localStorage.setItem("Board", JSON.stringify(array));
+
     return (
         <div className={"container"} style={{'marginTop': '80px'}}>
             <h2 className={"text-center"}>게시판</h2>
