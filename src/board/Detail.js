@@ -32,12 +32,22 @@ const Detail = () => {
     /* form 제출 시 호출 */
     const submitEvent = e => {
         e.preventDefault();
-        let params = {
-            id: id,
-            title: e.target.board_title.value,
-            content: e.target.board_content.value
-        }
-        console.log(params);
+
+        // 수정 된 내용을 배열에 넣기 위해 빈 배열 처리
+        let newArray = [];
+
+        array.forEach(row => {
+            if (row.id !== Number(id)) {
+                // 수정 중인 id가 아닌 경우는 기존 데이터 넣기
+                newArray = [...newArray, row];
+            } else {
+                // 수정 대상인 id는 상태값으로 교체
+                newArray = [...newArray, data];
+            }
+        });
+        // 변경된 배열 다시 저장
+        setArray(newArray);
+        localStorage.setItem('data', JSON.stringify(newArray));
     }
 
     const deleteEvent = () => {
