@@ -12,8 +12,17 @@ const List = () => {
     const [array, setArray] = useState([]);
     useEffect(() => {
         const resultString = localStorage.getItem('data');
-        const result = JSON.parse(resultString);
-        setArray(result);
+
+        /* 저장된 목록 여부 확인 */
+        if (resultString === null) {
+            // 저장된 목록이 없을 시 초기값 설정
+            setArray([]);
+            localStorage.setItem('data', JSON.stringify([]));
+        } else {
+            // 저장된 목록이 있을 시 상태값으로 적용
+            const result = JSON.parse(resultString);
+            setArray(result);
+        }
     }, []);
 
     return (
