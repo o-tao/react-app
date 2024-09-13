@@ -26,7 +26,7 @@ const Create = () => {
         const newArray = [...array, params];
         localStorage.setItem('data', JSON.stringify(newArray));
 
-        // navigate("/detail/1")
+        navigate(`/detail/${params.id}`);
     }
     return (
         <>
