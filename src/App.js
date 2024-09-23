@@ -3,24 +3,25 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import AppPage from "./AppPage";
 
 function App() {
-    let a = {textAlign: "center", fontSize: "20px"};
+    let a = {textAlign: "center"};
 
     return (
         <>
-            <h1 className={""} style={a}>안녕하세요</h1>
+            <h1 className={""} style={a}>Hello World</h1>
 
-            <a href={"/AppPage/1"}>페이지1 이동</a>
-            <br/>
-            <a href={"/AppPage/2"}>페이지2 이동</a>
+            <div className={"nav"}>
+                <a href={"/"}>홈</a>
+                <a href={"/Page/"}>페이지 이동</a>
+            </div>
 
             <BrowserRouter>
                 <Routes>
-                    {/*<Route path={"/AppPage"} element={<AppPage/>}></Route>*/}
-                    <Route path={"/AppPage/*"} element={<AppPage/>}></Route>
+                    {/*<Route path={"/Page"} element={<Page/>}></Route>*/}
+                    <Route path={"/Page/*"} element={<AppPage/>}></Route>
                 </Routes>
             </BrowserRouter>
 
-            <h2>footer</h2>
+            <h2 style={a}>footer</h2>
         </>
     );
 }
