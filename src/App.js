@@ -8,14 +8,15 @@ function App() {
     return (
         <>
             <h1 className={""} style={a}>안녕하세요</h1>
-            {/*<a href={"/page.html"}></a>*/}
-            {/*<AppPage/>*/}
 
-            <a href={"/AppPage"}>페이지 이동</a>
+            <a href={"/AppPage/1"}>페이지1 이동</a>
+            <br/>
+            <a href={"/AppPage/2"}>페이지2 이동</a>
 
             <BrowserRouter>
                 <Routes>
-                    <Route path={"/AppPage"} element={<AppPage/>}></Route>
+                    {/*<Route path={"/AppPage"} element={<AppPage/>}></Route>*/}
+                    <Route path={"/AppPage/*"} element={<AppPage/>}></Route>
                 </Routes>
             </BrowserRouter>
 
