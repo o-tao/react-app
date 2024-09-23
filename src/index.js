@@ -1,18 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+// import App from './App';
 // import Study from './study/Study01';
 // import Board from './board/Board';
+// import AppPage from "./appPage/AppPage";
+import UserPage from "./userPage/UserPage";
 import reportWebVitals from './reportWebVitals';
-import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <App/>
-        {/*<AppPage/>*/}
+        {/*<App/>*/}
         {/*<Study />*/}
         {/*<Board />*/}
+        {/*<AppPage/>*/}
+        <UserPage/>
     </React.StrictMode>
 );
 
