@@ -6,7 +6,8 @@ import './index.css';
 // import Board from './board/Board';
 // import AppPage from "./appPage/AppPage";
 // import UserPage from "./userPage/UserPage";
-import Account from "./account/Account";
+// import Account from "./account/Account";
+import File from './files/File';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -17,7 +18,8 @@ root.render(
         {/*<Board />*/}
         {/*<AppPage/>*/}
         {/*<UserPage/>*/}
-        <Account/>
+        {/*<Account/>*/}
+        <File/>
     </React.StrictMode>
 );
 
