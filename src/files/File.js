@@ -1,8 +1,11 @@
 import './File.css';
 import axios from "axios";
+import {useState} from "react";
 
-const file = () => {
+const File = () => {
     const host = "http://localhost:80" /* back 주소 */
+
+    let [img, setImg] = useState('');
 
     const submitEvent = e => {
         e.preventDefault();
@@ -14,7 +17,16 @@ const file = () => {
         /* back 매핑주소 */
         axios.post(host + "/fileUpload", formData)
             /* request 요청 */
-            .then(request => console.log(request))
+            .then(request => {
+                console.log(request, request.data);
+
+                /* Request state 성공 */
+                if (request.data.state) {
+                    let imgUrl = request.data.url
+                    let viewUrl = host + "/view?url="
+                    setImg(viewUrl + imgUrl);
+                }
+            })
             /* 에러 발생 시 로그 출력 */
             .catch(error => console.log(error));
     };
@@ -35,14 +47,12 @@ const file = () => {
                 </div>
             </form>
             <div className="imgs">
-                <img className="img" src='https://avatars.githubusercontent.com/u/20333260?v=4' alt="test"></img>
-                <img className="img" src='https://avatars.githubusercontent.com/u/20333260?v=4' alt="test"></img>
-                <img className="img" src='https://avatars.githubusercontent.com/u/20333260?v=4' alt="test"></img>
-                <img className="img" src='https://avatars.githubusercontent.com/u/20333260?v=4' alt="test"></img>
-                <img className="img" src='https://avatars.githubusercontent.com/u/20333260?v=4' alt="test"></img>
+                {
+                    img === '' ? <></> : <img className="img" src={img} alt={"test"}/>
+                }
             </div>
         </>
     );
 };
 
-export default file;
+export default File;
