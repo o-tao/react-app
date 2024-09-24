@@ -5,7 +5,8 @@ import {useState} from "react";
 const File = () => {
     const host = "http://localhost:80" /* back 주소 */
 
-    let [img, setImg] = useState('');
+    // let [img, setImg] = useState('');
+    let [imgs, setImgs] = useState([]);
 
     const submitEvent = e => {
         e.preventDefault();
@@ -13,18 +14,27 @@ const File = () => {
 
         /* file을 객체에 담아 전송해야 함 */
         const formData = new FormData();
-        formData.append("file", e.target.file.files[0]);
+
+        for (let i = 0; i < e.target.file.files.length; i++) {
+            formData.append("file", e.target.file.files[i]);
+        }
+
         /* back 매핑주소 */
-        axios.post(host + "/fileUpload", formData)
+        axios.post(host + "/filesUpload", formData)
             /* request 요청 */
             .then(request => {
                 console.log(request, request.data);
 
-                /* Request state 성공 */
+                /* Request state 성공시 */
                 if (request.data.state) {
-                    let imgUrl = request.data.url
                     let viewUrl = host + "/view?url="
-                    setImg(viewUrl + imgUrl);
+                    let list = []
+
+                    for (let i = 0; i < request.data.list.length; i++) {
+                        list[i] = viewUrl + request.data.list[i];
+                    }
+
+                    setImgs(list);
                 }
             })
             /* 에러 발생 시 로그 출력 */
@@ -40,7 +50,7 @@ const File = () => {
                 <div className="input-body">
                     <label form="title">그림</label>
                     {/* input type -> file */}
-                    <input accept="image/*" autoComplete="off" name="file" type="file"/>
+                    <input accept="image/*" autoComplete="off" name="file" type="file" multiple/>
                 </div>
                 <div className="input-body">
                     <input type="submit" value="전송"/>
@@ -48,7 +58,12 @@ const File = () => {
             </form>
             <div className="imgs">
                 {
-                    img === '' ? <></> : <img className="img" src={img} alt={"test"}/>
+                    // img === '' ? <></> : <img className="img" src={img} alt="test"/>
+                    imgs.map((row, index) => {
+                        return (
+                            <img className="img" src={row} key={index} alt="test"/>
+                        );
+                    })
                 }
             </div>
         </>
