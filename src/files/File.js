@@ -12,7 +12,7 @@ const file = () => {
         const formData = new FormData();
         formData.append("file", e.target.file.files[0]);
         /* back 매핑주소 */
-        axios.post("http://localhost:80/fileUpload", formData)
+        axios.post(host + "/fileUpload", formData)
             /* request 요청 */
             .then(request => console.log(request))
             /* 에러 발생 시 로그 출력 */
@@ -30,16 +30,16 @@ const file = () => {
                     {/* input type -> file */}
                     <input accept="image/*" autoComplete="off" name="file" type="file"/>
                 </div>
-                <div className={"input-body"}>
+                <div className="input-body">
                     <input type="submit" value="전송"/>
                 </div>
             </form>
-            <div className={"imgs"}>
-                <img className="img" src='https://avatars.githubusercontent.com/u/20333260?v=4' alt={"test"}></img>
-                <img className="img" src='https://avatars.githubusercontent.com/u/20333260?v=4' alt={"test"}></img>
-                <img className="img" src='https://avatars.githubusercontent.com/u/20333260?v=4' alt={"test"}></img>
-                <img className="img" src='https://avatars.githubusercontent.com/u/20333260?v=4' alt={"test"}></img>
-                <img className="img" src='https://avatars.githubusercontent.com/u/20333260?v=4' alt={"test"}></img>
+            <div className="imgs">
+                <img className="img" src='https://avatars.githubusercontent.com/u/20333260?v=4' alt="test"></img>
+                <img className="img" src='https://avatars.githubusercontent.com/u/20333260?v=4' alt="test"></img>
+                <img className="img" src='https://avatars.githubusercontent.com/u/20333260?v=4' alt="test"></img>
+                <img className="img" src='https://avatars.githubusercontent.com/u/20333260?v=4' alt="test"></img>
+                <img className="img" src='https://avatars.githubusercontent.com/u/20333260?v=4' alt="test"></img>
             </div>
         </>
     );
