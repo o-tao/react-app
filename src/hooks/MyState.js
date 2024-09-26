@@ -36,17 +36,30 @@ const State2 = () => {
 }
 
 const State3 = () => {
+    const [txt, setTxt] = useState('');
+    const [array, setArray] = useState([]);
+
     const submitEvent = e => {
         e.preventDefault();
+        setArray([...array, txt]);
     }
+
     const inputEvent = e => {
+        setTxt(e.target.value);
     }
+
     return (
         <form onSubmit={submitEvent}>
-            <input type='text' placeholder='글 작성하세요.' value="" onChange={inputEvent}/>
+            <input type='text' placeholder='글 작성하세요.' value={txt} onChange={inputEvent}/>
             <button type='submit'>입력</button>
             <div>
-                <p>작성글내용</p>
+                {
+                    array.toReversed().map((row, index) => {
+                        return (
+                            <p key={index}>{row}</p>
+                        )
+                    })
+                }
             </div>
         </form>
     );
