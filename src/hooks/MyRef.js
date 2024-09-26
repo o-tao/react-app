@@ -107,14 +107,25 @@ const Step5 = () => {
 }
 
 const Step6 = () => {
+    const [txt, setTxt] = useState('');
+    const ref = useRef();
+
+    useEffect(() => {
+        ref.current.focus();
+    }, []);
+
     const changeEvent = e => {
+        setTxt(e.target.value);
     }
+
     const clickEvent = e => {
         e.preventDefault();
+        console.log(txt);
     }
+
     return (
         <form onSubmit={clickEvent}>
-            <input type='text' value="" onChange={changeEvent}/>
+            <input type='text' value={txt} onChange={changeEvent} ref={ref}/>
             <input type='submit' value='적용'/>
         </form>
     );
