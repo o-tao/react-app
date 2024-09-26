@@ -50,22 +50,35 @@ const Step3 = () => {
         </>
     );
 }
+
 const Step4 = () => {
+    const [load, setLoad] = useState(false);
+    let num = 0;
+    const ref = useRef(0);
+
     const event1 = () => {
+        num = num + 1;
     }
+
     const event2 = () => {
+        ref.current = ref.current + 1;
     }
+
     const event3 = () => {
+        setLoad(!load);
     }
+
     const event4 = () => {
+        console.log("변수 = " + num + ", 참조 = " + ref.current);
     }
+
     return (
         <>
             <button type='button' onClick={event1}>변수값 변경</button>
-            <span style={{marginLeft: '10px'}}>변수값 0</span>
+            <span style={{marginLeft: '10px'}}>변수값 {num}</span>
             <br/>
             <button type='button' onClick={event2}>참조값 변경</button>
-            <span style={{marginLeft: '10px'}}>참조값 0</span>
+            <span style={{marginLeft: '10px'}}>참조값 {ref.current}</span>
             <br/>
             <button type='button' onClick={event3}>상태값 변경</button>
             <button type='button' onClick={event4}>변수와 참조값 확인</button>
