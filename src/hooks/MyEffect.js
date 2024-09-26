@@ -1,34 +1,46 @@
-import {useState, useEffect} from 'react';
-import {Routes, Route} from 'react-router-dom';
+import {useEffect, useState} from 'react';
+import {Route, Routes} from 'react-router-dom';
 
 const Step1 = () => {
-    useEffect(()=>{
+    const [num, setNum] = useState(0);
+
+    useEffect(() => {
         console.log("화면 출력");
+        setNum(num + 1);
     });
-    return <p>호출 횟수 : 0</p>
+
+    return <p>호출 횟수 : {num}</p>
 }
+
 const Step2 = () => {
-    useEffect(()=>{
+    const [num, setNum] = useState(0);
+
+    useEffect(() => {
         console.log("화면 출력");
+        setNum(num + 1);
     }, []);
-    return <p>호출 횟수 : 0</p>
+
+    return <p>호출 횟수 : {num}</p>
 }
 const Step3 = () => {
-    useEffect(()=>{
+    useEffect(() => {
         console.log("화면 출력");
-    }, []); 
-    return <input type='number' value="0" onChange={e=>{}}/>
+    }, []);
+    return <input type='number' value="0" onChange={e => {
+    }}/>
 }
 const Step4 = () => {
     return (
         <>
-            <button type="button" onClick={()=> {}}>시작</button>
-            <Step4sub />
+            <button type="button" onClick={() => {
+            }}>시작
+            </button>
+            <Step4sub/>
         </>
     );
 }
 const Step4sub = props => {
-    useEffect(()=>{
+    useEffect(() => {
         const app = setInterval(() => {
             console.log("동작");
         }, 1000);
@@ -48,10 +60,10 @@ const MyEffect = () => {
                 <a href="/effect/4">예제4</a>
             </nav>
             <Routes>
-                <Route path="1" element={<Step1 />} />
-                <Route path="2" element={<Step2 />} />
-                <Route path="3" element={<Step3 />} />
-                <Route path="4" element={<Step4 />} />
+                <Route path="1" element={<Step1/>}/>
+                <Route path="2" element={<Step2/>}/>
+                <Route path="3" element={<Step3/>}/>
+                <Route path="4" element={<Step4/>}/>
             </Routes>
         </>
     );
