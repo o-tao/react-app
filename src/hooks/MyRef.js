@@ -111,7 +111,7 @@ const Step6 = () => {
     const ref = useRef();
 
     useEffect(() => {
-        ref.current.focus();
+        ref.current.focus(); // 페이지 로드시 초점을 맞춤
     }, []);
 
     const changeEvent = e => {
