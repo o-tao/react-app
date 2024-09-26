@@ -27,17 +27,26 @@ const Step2 = () => {
 }
 
 const Step3 = () => {
-    const event1 = () => {
+    const [num, setNum] = useState(0);
+    const ref = useRef(0);
+
+    const event1 = () => { // useState는 값이 변경될 경우 Re-rendering
+        setNum(num + 1);
+        console.log("상태값 변경")
     }
+
     const event2 = () => {
+        ref.current = ref.current + 1;
+        console.log("참조값 변경")
     }
+
     return (
         <>
             <button type='button' onClick={event1}>상태값 변경</button>
-            <span style={{marginLeft: '10px'}}>상태값 0</span>
+            <span style={{marginLeft: '10px'}}>상태값 {num}</span>
             <br/>
             <button type='button' onClick={event2}>참조값 변경</button>
-            <span style={{marginLeft: '10px'}}>참조값 0</span>
+            <span style={{marginLeft: '10px'}}>참조값 {ref.current}</span>
         </>
     );
 }
