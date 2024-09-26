@@ -18,13 +18,18 @@ const State1 = () => {
 }
 
 const State2 = () => {
+    const [txt, setTxt] = useState('');
+
     const submitEvent = e => {
         e.preventDefault();
+        console.log(e.target.text.value);
+        setTxt(e.target.value);
     }
+
     return (
         <form onSubmit={submitEvent}>
-            <p><span>작성글 : </span>내용</p>
-            <input type='text' name="text" placeholder='내용을 작성하세요.'/>
+            <p><span>작성글 : </span>{txt}</p>
+            <input type='text' name="text" placeholder='내용을 작성하세요.' defaultValue={txt}/>
             <button type='submit'>상태값 변경</button>
         </form>
     );
