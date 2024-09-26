@@ -22,13 +22,19 @@ const Step2 = () => {
 
     return <p>호출 횟수 : {num}</p>
 }
+
 const Step3 = () => {
+    const [num, setNum] = useState(0);
+
     useEffect(() => {
         console.log("화면 출력");
-    }, []);
-    return <input type='number' value="0" onChange={e => {
+    }, [num]); // State 값을 넣어 값이 들어올시 페이지 리로드
+
+    return <input type='number' value={num} onChange={e => {
+        setNum(e.target.value)
     }}/>
 }
+
 const Step4 = () => {
     return (
         <>
