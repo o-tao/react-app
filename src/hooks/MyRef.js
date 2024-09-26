@@ -35,7 +35,7 @@ const Step3 = () => {
         console.log("상태값 변경")
     }
 
-    const event2 = () => {
+    const event2 = () => { // useRef는 값이 변경될 경우 Re-rendering 하지 않음
         ref.current = ref.current + 1;
         console.log("참조값 변경")
     }
