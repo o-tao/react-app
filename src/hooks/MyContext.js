@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useId, useState} from 'react';
 import {ThemeContext} from "./useThemeContext";
 
 const Header = () => {
@@ -20,6 +20,7 @@ const Header = () => {
 
 const Main = () => {
     const theme = useContext(ThemeContext);
+    const id = useId();
 
     return (
         <main style={{
@@ -29,7 +30,21 @@ const Main = () => {
             color: theme.show ? 'white' : 'black'
         }}>
             {
-                theme.show ? <h2>변경된 스타일 입니다.</h2> : <h2>기본 스타일 입니다.</h2>
+                <>
+                    {
+                        theme.show ? <h2>변경된 스타일 입니다.</h2> : <h2>기본 스타일 입니다.</h2>
+                    }
+                    <br/>
+
+                    <label htmlFor={id + "-m1"}>메모1 </label>
+                    <input type={"text"} id={id + "-m1"}/>
+                    <br/><br/>
+                    <label htmlFor={id + "-m2"}>메모2 </label>
+                    <input type={"text"} id={id + "-m2"}/>
+                    <br/><br/>
+                    <label htmlFor={id + "-m3"}>메모3 </label>
+                    <input type={"text"} id={id + "-m3"}/>
+                </>
             }
         </main>
     );
