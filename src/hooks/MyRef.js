@@ -1,0 +1,93 @@
+import {useState, useEffect, useRef} from 'react';
+import {Routes, Route} from 'react-router-dom';
+
+const Step1 = () => {
+    return <p>참조값</p>
+}
+const Step2 = () => {
+    const changeEvent = e => {}
+    return (
+        <>
+            <p>상태값 0</p>
+            <p>참조값 0</p>
+            <input type='number' value="" onChange={changeEvent} />
+        </>
+    );
+}
+const Step3 = () => {
+    const event1 = () => {}
+    const event2 = () => {}
+    return (
+        <>
+            <button type='button' onClick={event1}>상태값 변경</button>
+            <span style={{marginLeft: '10px'}}>상태값 0</span>
+            <br />
+            <button type='button' onClick={event2}>참조값 변경</button>
+            <span style={{marginLeft: '10px'}}>참조값 0</span>
+        </>
+    );
+}
+const Step4 = () => {
+    const event1 = () => {}
+    const event2 = () => {}
+    const event3 = () => {}
+    const event4 = () => {}
+    return (
+        <>
+            <button type='button' onClick={event1}>변수값 변경</button>
+            <span style={{marginLeft: '10px'}}>변수값 0</span>
+            <br />
+            <button type='button' onClick={event2}>참조값 변경</button>
+            <span style={{marginLeft: '10px'}}>참조값 0</span>
+            <br />
+            <button type='button' onClick={event3}>상태값 변경</button>
+            <button type='button' onClick={event4}>변수와 참조값 확인</button>
+        </>
+    );
+}
+const Step5 = () => {
+    return (
+        <>
+            <button type='button' onClick={()=>{}}>1증가</button>
+            <span style={{marginLeft: '10px'}}>상태값 : 0</span>
+        </>
+    );
+}
+const Step6 = () => {
+    const changeEvent = e => {}
+    const clickEvent = e => {
+        e.preventDefault();
+    }
+    return (
+        <form onSubmit={clickEvent}>
+            <input type='text' value="" onChange={changeEvent} />
+            <input type='submit' value='적용' />
+        </form>
+    );
+}
+
+const MyRef = () => {
+    return (
+        <>
+            <h1 style={{textAlign: 'center'}}>useRef</h1>
+            <nav className='nav-link'>
+                <a href="/ref/1">예제1</a>
+                <a href="/ref/2">예제2</a>
+                <a href="/ref/3">예제3</a>
+                <a href="/ref/4">예제4</a>
+                <a href="/ref/5">예제5</a>
+                <a href="/ref/6">예제6</a>
+            </nav>
+            <Routes>
+                <Route path="1" element={<Step1 />} />
+                <Route path="2" element={<Step2 />} />
+                <Route path="3" element={<Step3 />} />
+                <Route path="4" element={<Step4 />} />
+                <Route path="5" element={<Step5 />} />
+                <Route path="6" element={<Step6 />} />
+            </Routes>
+        </>
+    );
+}
+
+export default MyRef;
