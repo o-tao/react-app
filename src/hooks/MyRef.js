@@ -1,4 +1,4 @@
-import {useRef} from 'react';
+import {useRef, useState} from 'react';
 import {Route, Routes} from 'react-router-dom';
 
 const Step1 = () => {
@@ -8,16 +8,24 @@ const Step1 = () => {
 }
 
 const Step2 = () => {
+    const [num, setNum] = useState(0);
+    const ref = useRef(0);
+
     const changeEvent = e => {
+        let value = e.target.value;
+        setNum(value);
+        ref.current = value;
     }
+
     return (
         <>
-            <p>상태값 0</p>
-            <p>참조값 0</p>
-            <input type='number' value="" onChange={changeEvent}/>
+            <p>상태값 {num}</p>
+            <p>참조값 {ref.current}</p>
+            <input type='number' value={num} onChange={changeEvent}/>
         </>
     );
 }
+
 const Step3 = () => {
     const event1 = () => {
     }
