@@ -1,10 +1,16 @@
+import {useState} from "react";
 import {Route, Routes} from 'react-router-dom';
 
 const State1 = () => {
+    const [num, setNum] = useState(0);
+    // setNum( i => i + 1); 도 같은 기능을 구현한다.
+
     return (
         <>
-            <span>번호 : 0</span>
+            <span>번호 : {num}</span>
             <button type='button' onClick={() => {
+                let data = num + 1;
+                setNum(data);
             }}>상태값 변경
             </button>
         </>
