@@ -3,13 +3,13 @@ import {Route, Routes} from 'react-router-dom';
 
 const State1 = () => {
     const [num, setNum] = useState(0);
-    // setNum( i => i + 1); 도 같은 기능을 구현한다.
 
     return (
         <>
             <span>번호 : {num}</span>
             <button type='button' onClick={() => {
                 let data = num + 1;
+                // setNum( i => i + 1); 도 같은 기능을 구현한다.
                 setNum(data);
             }}>상태값 변경
             </button>
@@ -71,34 +71,62 @@ const sampleList = () => {
 }
 
 const State4 = () => {
+    const [list, setList] = useState(sampleList());
+    const [txt, setTxt] = useState('');
+
     const submitEvent = e => {
         e.preventDefault();
+        setList([...list, txt]);
+        setTxt('');
     }
+
     const inputEvent = e => {
+        setTxt(e.target.value);
     }
+
     return (
         <form onSubmit={submitEvent}>
-            <input type='text' placeholder='글 작성하세요.' value="" onChange={inputEvent}/>
+            <input type='text' placeholder='글 작성하세요.' value={txt} onChange={inputEvent}/>
             <button type='submit'>입력</button>
             <div>
-                <p>작성글내용</p>
+                {
+                    list.map((row, index) => {
+                        return (
+                            <p key={index}>{row}</p>
+                        )
+                    })
+                }
             </div>
         </form>
     );
 }
 
 const State5 = () => {
+    const [list, setList] = useState(() => sampleList());
+    const [txt, setTxt] = useState('');
+
     const submitEvent = e => {
         e.preventDefault();
+        setList([...list, txt]);
+        setTxt('');
     }
+
     const inputEvent = e => {
+        setTxt(e.target.value);
     }
+
     return (
         <form onSubmit={submitEvent}>
-            <input type='text' placeholder='글 작성하세요.' value="" onChange={inputEvent}/>
+            <input type='text' placeholder='글 작성하세요.' value={txt} onChange={inputEvent}/>
             <button type='submit'>입력</button>
             <div>
-                <p>작성글내용</p>
+                {
+                    list.map((row, index) => {
+                        return (
+                            <p key={index}>{row}</p>
+                        )
+                    })
+                }
             </div>
         </form>
     );
