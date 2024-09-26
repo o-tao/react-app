@@ -1,4 +1,4 @@
-import {useRef, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {Route, Routes} from 'react-router-dom';
 
 const Step1 = () => {
@@ -85,16 +85,27 @@ const Step4 = () => {
         </>
     );
 }
+
 const Step5 = () => {
+    const [num, setNum] = useState(0);
+    const ref = useRef(0);
+
+    useEffect(() => {
+        console.log("Effect 동작")
+        ref.current = num;
+    }, [num]);
+
     return (
         <>
             <button type='button' onClick={() => {
+                setNum(num + 1);
             }}>1증가
             </button>
-            <span style={{marginLeft: '10px'}}>상태값 : 0</span>
+            <span style={{marginLeft: '10px'}}>상태값 : {ref.current}</span>
         </>
     );
 }
+
 const Step6 = () => {
     const changeEvent = e => {
     }
