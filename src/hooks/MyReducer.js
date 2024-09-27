@@ -1,11 +1,11 @@
-import { useState, useReducer } from "react";
+import {useReducer, useState} from "react";
 
 const ACTION_TYPES = {
     ADD: 'addtion', SUB: 'subtraction', DIV: 'division', MUL: 'multiplication',
 }
 
 const reducer = (state, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case ACTION_TYPES.ADD:
             return state + action.value;
         case ACTION_TYPES.SUB:
@@ -20,17 +20,30 @@ const reducer = (state, action) => {
 }
 
 const MyReducer = () => {
-    const changeEvent = e => {}
-    const addEvent = () => {}
-    const subEvent = () => {}
-    const divEvent = () => {}
-    const mulEvent = () => {}
+    const [num, setNum] = useState(0);
+    const [result, setResult] = useReducer(reducer, 0);
+
+    const changeEvent = e => {
+        setNum(parseInt(e.target.value));
+    }
+    const addEvent = () => {
+        setResult({type: ACTION_TYPES.ADD, value: num});
+    }
+    const subEvent = () => {
+        setResult({type: ACTION_TYPES.SUB, value: num});
+    }
+    const divEvent = () => {
+        setResult({type: ACTION_TYPES.DIV, value: num});
+    }
+    const mulEvent = () => {
+        setResult({type: ACTION_TYPES.MUL, value: num});
+    }
 
     return (
         <>
             <h1 style={{textAlign: 'center'}}>useReducer</h1>
-            <p>0</p>
-            <input type="number" step="100" value="0" onChange={changeEvent} />
+            <p>{result}</p>
+            <input type="number" step="100" value={num} onChange={changeEvent}/>
             <div style={{display: 'grid', gap: '10px', gridTemplateColumns: '1fr 1fr 1fr 1fr', marginTop: '10px'}}>
                 <button type="button" onClick={addEvent}>+</button>
                 <button type="button" onClick={subEvent}>-</button>
