@@ -1,46 +1,83 @@
-import {useState, useEffect, useCallback} from 'react';
-import {Routes, Route} from 'react-router-dom';
+import {useCallback, useEffect, useState} from 'react';
+import {Route, Routes} from 'react-router-dom';
 
 const Step1 = () => {
-    const clickEvent = () => {}
-    useEffect(()=>{
-        console.log("화면 출력");
-    }, [clickEvent]);
-    return (
-        <>
-            <input type='text' value="" onChange={e => {}}/>
-            <button type='button' onClick={()=> {}}>호출</button>
-            <button type='button' onClick={clickEvent}>콘솔 확인</button>
-        </>
-    )
-}
-const Step2 = () => {
+    const [txt, setTxt] = useState('');
+    const [show, setShow] = useState(false);
+
     const clickEvent = () => {
-        console.log(`이름 : `);
-    }
-    useEffect(()=>{
+        return console.log(`호출 : ${txt}`);
+    };
+
+    useEffect(() => {
         console.log("화면 출력");
     }, [clickEvent]);
+
+    const a = 0;
+    useEffect(() => {
+        console.log("숫자 출력");
+    }, [a]);
+
     return (
         <>
-            <input type='text' value="" onChange={e => {}}/>
-            <button type='button' onClick={()=> {}}>호출</button>
+            <input type='text' value={txt} onChange={e => {
+                setTxt(e.target.value)
+            }}/>
+            <button type='button' onClick={() => {
+                setShow(!show)
+            }}>호출
+            </button>
             <button type='button' onClick={clickEvent}>콘솔 확인</button>
         </>
     )
 }
+
+const Step2 = () => {
+    const [txt, setTxt] = useState('');
+    const [show, setShow] = useState(false);
+
+    const clickEvent = useCallback(() => {
+        return console.log(`호출 : ${txt}`);
+    }, [txt]);
+
+    useEffect(() => {
+        console.log("화면 출력");
+    }, [clickEvent]);
+
+    const a = 0;
+    useEffect(() => {
+        console.log("숫자 출력");
+    }, [a]);
+
+    return (
+        <>
+            <input type='text' value={txt} onChange={e => {
+                setTxt(e.target.value)
+            }}/>
+            <button type='button' onClick={() => {
+                setShow(!show)
+            }}>호출
+            </button>
+            <button type='button' onClick={clickEvent}>콘솔 확인</button>
+        </>
+    )
+}
+
 const Step3 = () => {
     return (
         <div style={{backgroundColor: 'white'}}>
-            <input type='number' value="0" onChange={e => {}}/>
-            <button type='button' onClick={()=>{}}>배경 색 변경</button>
-            <SubPage />
+            <input type='number' value="0" onChange={e => {
+            }}/>
+            <button type='button' onClick={() => {
+            }}>배경 색 변경
+            </button>
+            <SubPage/>
         </div>
     )
 }
 
 const SubPage = () => {
-    useEffect(()=> {
+    useEffect(() => {
         console.log("배경 색 변경");
     }, []);
     return <progress style={{width: '100%'}} max="100" value="50"/>
@@ -56,9 +93,9 @@ const MyCallback = () => {
                 <a href="/callback/3">예제3</a>
             </nav>
             <Routes>
-                <Route path="1" element={<Step1 />} />
-                <Route path="2" element={<Step2 />} />
-                <Route path="3" element={<Step3 />} />
+                <Route path="1" element={<Step1/>}/>
+                <Route path="2" element={<Step2/>}/>
+                <Route path="3" element={<Step3/>}/>
             </Routes>
         </>
     );
