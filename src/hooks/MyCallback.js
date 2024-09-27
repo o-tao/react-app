@@ -64,23 +64,41 @@ const Step2 = () => {
 }
 
 const Step3 = () => {
+    const [num, setNum] = useState(50);
+    const [show, setShow] = useState(false);
+
+    const colorEvent = useCallback(() => {
+        return show ? 'black' : 'white';
+    }, [show]);
+
+    useEffect(() => {
+        console.log("배경 색 변경 함수 생성")
+    }, [colorEvent]);
+
     return (
         <div style={{backgroundColor: 'white'}}>
-            <input type='number' value="0" onChange={e => {
+            <input type='number' step={"10"} value={num} onChange={e => {
+                setNum(Number(e.target.value));
             }}/>
             <button type='button' onClick={() => {
+                setShow(!show)
             }}>배경 색 변경
             </button>
-            <SubPage/>
+            <SubPage num={num} colorEvent={colorEvent}/>
         </div>
     )
 }
 
-const SubPage = () => {
+const SubPage = (props) => {
     useEffect(() => {
         console.log("배경 색 변경");
     }, []);
-    return <progress style={{width: '100%'}} max="100" value="50"/>
+
+    return (
+        <div style={{backgroundColor: props.colorEvent()}}>
+            <progress style={{width: '100%'}} max="100" value={props.num}/>
+        </div>
+    )
 }
 
 const MyCallback = () => {
