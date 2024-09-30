@@ -1,6 +1,7 @@
 import {useEffect, useRef, useState} from 'react';
 import {Route, Routes} from 'react-router-dom';
 import axios from "axios";
+import {getToken} from "../util/token"
 
 const Step1 = () => {
     const ref = useRef(1);
@@ -146,6 +147,9 @@ const Step7 = () => {
 
         axios.get("http://localhost/form1", {params})
             .then(request => {
+                let result = getToken(request.data.token);
+                console.log(result);
+                /*
                 console.log(request);
                 let token = request.data.token;
                 console.log(token);
@@ -160,6 +164,7 @@ const Step7 = () => {
                 let result = JSON.parse(window.atob(payload.replace(/-/g, '/')));
                 console.log(result);
                 console.log(result.name);
+                */
             })
             .catch(error => console.log(error));
 
