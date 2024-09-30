@@ -145,7 +145,22 @@ const Step7 = () => {
         }
 
         axios.get("http://localhost/form1", {params})
-            .then(request => console.log(request))
+            .then(request => {
+                console.log(request);
+                let token = request.data.token;
+                console.log(token);
+                let tokens = token.split(".");
+                console.log(tokens);
+                let payload = tokens[1];
+                console.log(payload);
+                let p1 = payload.replace(/-/g, '+');
+                console.log(p1);
+                let p2 = payload.replace(/_/g, '/');
+                console.log(p2);
+                let result = JSON.parse(window.atob(payload.replace(/-/g, '/')));
+                console.log(result);
+                console.log(result.name);
+            })
             .catch(error => console.log(error));
 
         axios.post("http://localhost/form2", params)
@@ -169,7 +184,7 @@ const Step8 = () => {
 
     const submitEvent = e => {
         e.preventDefault();
-        
+
         axios.get("http://localhost/form1", {user})
             .then(request => console.log(request))
             .catch(error => console.log(error));
