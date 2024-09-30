@@ -138,14 +138,19 @@ const Step7 = () => {
 
     const submitEvent = e => {
         e.preventDefault();
-        console.log(nameRef.current.value)
-        console.log(passwordRef.current.value)
 
         const params = {
             name: nameRef.current.value,
             password: passwordRef.current.value
         }
-        console.log(params);
+
+        axios.get("http://localhost/form1", {params})
+            .then(request => console.log(request))
+            .catch(error => console.log(error));
+
+        axios.post("http://localhost/form2", params)
+            .then(request => console.log(request))
+            .catch(error => console.log(error));
     }
 
     return (
@@ -153,6 +158,7 @@ const Step7 = () => {
             <input type={"text"} ref={nameRef}/>
             <br/>
             <input type={"text"} ref={passwordRef}/>
+            <br/>
             <button type={"submit"}>호출</button>
         </form>
     )
