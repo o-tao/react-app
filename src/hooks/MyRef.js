@@ -1,5 +1,6 @@
 import {useEffect, useRef, useState} from 'react';
 import {Route, Routes} from 'react-router-dom';
+import axios from "axios";
 
 const Step1 = () => {
     const ref = useRef(1);
@@ -189,10 +190,13 @@ const Step9 = () => {
             password: e.target.password.value
         }
         console.log(params);
-        e.target.submit();
+        // e.target.submit();
+        axios.get("http://localhost/form1", {params})
+            .then(request => console.log(request))
+            .catch(error => console.log(error));
     }
     return (
-        <form onSubmit={submitEvent} action={"http://localhost/form1"} method={"get"}>
+        <form onSubmit={submitEvent}>
             <input type={"text"} name={"name"}/>
             <br/>
             <input type={"text"} name={"password"}/>
