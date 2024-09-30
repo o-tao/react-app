@@ -191,7 +191,11 @@ const Step9 = () => {
         }
         console.log(params);
         // e.target.submit();
-        axios.get("http://localhost/form1", {params})
+        // axios.get("http://localhost/form1", {params})
+        //     .then(request => console.log(request))
+        //     .catch(error => console.log(error));
+
+        axios.post("http://localhost/form2", params)
             .then(request => console.log(request))
             .catch(error => console.log(error));
     }
