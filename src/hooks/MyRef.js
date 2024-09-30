@@ -181,6 +181,26 @@ const Step8 = () => {
     )
 };
 
+const Step9 = () => {
+    const submitEvent = e => {
+        e.preventDefault();
+        const params = {
+            name: e.target.name.value,
+            password: e.target.password.value
+        }
+        console.log(params);
+    }
+    return (
+        <form onSubmit={submitEvent}>
+            <input type={"text"} name={"name"}/>
+            <br/>
+            <input type={"text"} name={"password"}/>
+            <br/>
+            <button type={"submit"}>호출</button>
+        </form>
+    )
+};
+
 const MyRef = () => {
     return (
         <>
@@ -194,6 +214,7 @@ const MyRef = () => {
                 <a href="/ref/6">예제6</a>
                 <a href="/ref/7">예제7</a>
                 <a href="/ref/8">예제8</a>
+                <a href="/ref/9">예제9</a>
             </nav>
             <Routes>
                 <Route path="1" element={<Step1/>}/>
@@ -204,6 +225,7 @@ const MyRef = () => {
                 <Route path="6" element={<Step6/>}/>
                 <Route path="7" element={<Step7/>}/>
                 <Route path="8" element={<Step8/>}/>
+                <Route path="9" element={<Step9/>}/>
             </Routes>
         </>
     );
