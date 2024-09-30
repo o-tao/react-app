@@ -157,6 +157,30 @@ const Step7 = () => {
     )
 };
 
+const Step8 = () => {
+    const [user, setUser] = useState({name: "", password: ""});
+
+    const submitEvent = e => {
+        e.preventDefault();
+        console.log(user);
+    }
+
+    const changeEvent = e => {
+        const {name, value} = e.target;
+        setUser({...user, [name]: value})
+    }
+
+    return (
+        <form onSubmit={submitEvent}>
+            <input type={"text"} name={"name"} value={user.name} onChange={changeEvent}/>
+            <br/>
+            <input type={"text"} name={"password"} value={user.password} onChange={changeEvent}/>
+            <br/>
+            <button type={"submit"}>호출</button>
+        </form>
+    )
+};
+
 const MyRef = () => {
     return (
         <>
@@ -169,6 +193,7 @@ const MyRef = () => {
                 <a href="/ref/5">예제5</a>
                 <a href="/ref/6">예제6</a>
                 <a href="/ref/7">예제7</a>
+                <a href="/ref/8">예제8</a>
             </nav>
             <Routes>
                 <Route path="1" element={<Step1/>}/>
@@ -178,6 +203,7 @@ const MyRef = () => {
                 <Route path="5" element={<Step5/>}/>
                 <Route path="6" element={<Step6/>}/>
                 <Route path="7" element={<Step7/>}/>
+                <Route path="8" element={<Step8/>}/>
             </Routes>
         </>
     );
