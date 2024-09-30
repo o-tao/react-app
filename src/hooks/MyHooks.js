@@ -1,8 +1,8 @@
 import {useEffect, useState} from "react";
-import {FindById} from './useMembers';
+import {FindByAll, FindById} from './useMembers';
 
-const Detail = ({id}) => {
-    const user = FindById(id);
+const Detail = ({array, id}) => {
+    const user = FindById(array, id, "id");
 
     return (
         <>
@@ -15,25 +15,25 @@ const Detail = ({id}) => {
     )
 }
 
-const list = [
-    {id: 1, name: '홍길동', age: 18},
-    {id: 2, name: '이순신', age: 30},
-    {id: 3, name: '류관순', age: 16}
-];
-
 const MyHooks = () => {
     const [array, setArray] = useState([]);
+    const [response, error] = FindByAll("http://localhost:3000/users.json")
     const [show, setShow] = useState(false);
     const [id, setId] = useState(0);
-
-    useEffect(() => {
-        setArray(list);
-    }, []);
 
     const clickEvent = id => {
         setId(id);
         setShow(true);
     }
+
+    useEffect(() => {
+        if (error) {
+            console.log(error);
+        }
+        if (response.data) {
+            setArray(response.data.state ? response.data.result : []);
+        }
+    }, [error, response]);
 
     return (
         <>
@@ -48,7 +48,7 @@ const MyHooks = () => {
                     })
                 }
             </ol>
-            {show && <Detail id={id}/>}
+            {show && <Detail array={array} id={id}/>}
         </>
     );
 }
