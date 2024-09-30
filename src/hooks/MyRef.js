@@ -169,7 +169,14 @@ const Step8 = () => {
 
     const submitEvent = e => {
         e.preventDefault();
-        console.log(user);
+        
+        axios.get("http://localhost/form1", {user})
+            .then(request => console.log(request))
+            .catch(error => console.log(error));
+
+        axios.post("http://localhost/form2", user)
+            .then(request => console.log(request))
+            .catch(error => console.log(error));
     }
 
     const changeEvent = e => {
