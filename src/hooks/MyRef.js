@@ -146,12 +146,34 @@ const Step7 = () => {
         }
 
         axios.get("http://localhost/form1", {params})
-            .then(request => {
-                let result = getToken(request.data.token);
+            .then(response => {
+                let result = getToken(response.data.token);
                 console.log(result);
+
+                let now = new Date();
+                let expiredAtDate = new Date(result.exp * 1000); // 초를 밀리초로 변환
+                console.log(expiredAtDate, now);
+
+                // 발급 시간
+                const formatDate = (date) => {
+                    const yyyy = date.getFullYear();
+                    const mm = String(date.getMonth() + 1).padStart(2, '0'); // 0~11 => 1~12 로 변경
+                    const dd = String(date.getDate()).padStart(2, '0');
+                    const hh = String(date.getHours()).padStart(2, '0');
+                    const min = String(date.getMinutes()).padStart(2, '0');
+                    return `${yyyy}-${mm}-${dd} ${hh}:${min}`;
+                };
+                console.log('Expried At: ', formatDate(expiredAtDate));
+                console.log('Now At: ', formatDate(now));
+
+                if (formatDate(expiredAtDate) < formatDate(now)) {
+                    alert("만료된 토큰입니다.");
+                } else {
+                    alert("유효한 토큰입니다.");
+                }
                 /*
-                console.log(request);
-                let token = request.data.token;
+                console.log(response);
+                let token = response.data.token;
                 console.log(token);
                 let tokens = token.split(".");
                 console.log(tokens);
