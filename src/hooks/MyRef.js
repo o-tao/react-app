@@ -131,6 +131,32 @@ const Step6 = () => {
     );
 }
 
+const Step7 = () => {
+    const nameRef = useRef();
+    const passwordRef = useRef();
+
+    const submitEvent = e => {
+        e.preventDefault();
+        console.log(nameRef.current.value)
+        console.log(passwordRef.current.value)
+
+        const params = {
+            name: nameRef.current.value,
+            password: passwordRef.current.value
+        }
+        console.log(params);
+    }
+
+    return (
+        <form onSubmit={submitEvent}>
+            <input type={"text"} ref={nameRef}/>
+            <br/>
+            <input type={"text"} ref={passwordRef}/>
+            <button type={"submit"}>호출</button>
+        </form>
+    )
+};
+
 const MyRef = () => {
     return (
         <>
@@ -142,6 +168,7 @@ const MyRef = () => {
                 <a href="/ref/4">예제4</a>
                 <a href="/ref/5">예제5</a>
                 <a href="/ref/6">예제6</a>
+                <a href="/ref/7">예제7</a>
             </nav>
             <Routes>
                 <Route path="1" element={<Step1/>}/>
@@ -150,6 +177,7 @@ const MyRef = () => {
                 <Route path="4" element={<Step4/>}/>
                 <Route path="5" element={<Step5/>}/>
                 <Route path="6" element={<Step6/>}/>
+                <Route path="7" element={<Step7/>}/>
             </Routes>
         </>
     );
