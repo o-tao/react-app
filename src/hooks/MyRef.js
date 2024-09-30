@@ -183,15 +183,15 @@ const Step8 = () => {
 
 const Step9 = () => {
     const submitEvent = e => {
-        e.preventDefault();
-        const params = {
-            name: e.target.name.value,
-            password: e.target.password.value
-        }
-        console.log(params);
+        // e.preventDefault();
+        // const params = {
+        //     name: e.target.name.value,
+        //     password: e.target.password.value
+        // }
+        // console.log(params);
     }
     return (
-        <form onSubmit={submitEvent}>
+        <form onSubmit={submitEvent} action={"http://localhost/form1"} method={"get"}>
             <input type={"text"} name={"name"}/>
             <br/>
             <input type={"text"} name={"password"}/>
