@@ -2,6 +2,11 @@ import {BrowserRouter, Route, Routes, useNavigate} from 'react-router-dom';
 import './ViewApp.css';
 import {useEffect, useState} from "react";
 
+const getData = async () => {
+    const response = await fetch("/data1.json");
+    return response.json();
+};
+
 const View1 = () => {
     const [array, setArray] = useState([]);
 
@@ -28,9 +33,19 @@ const View1 = () => {
     );
 }
 const View2 = () => {
+    const [array, setArray] = useState([]);
+    useEffect(() => {
+        console.log(getData());
+    }, []);
+
     return (
         <div className="container">
             <h1 className="head">화면2</h1>
+            <ol className="body">
+                {
+                    array.map((row, index) => <li key={index}>{row}</li>)
+                }
+            </ol>
         </div>
     );
 }
