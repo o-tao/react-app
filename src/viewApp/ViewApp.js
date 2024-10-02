@@ -34,8 +34,14 @@ const View1 = () => {
 }
 const View2 = () => {
     const [array, setArray] = useState([]);
+
     useEffect(() => {
-        console.log(getData());
+        const response = getData();
+        response.then(data => {
+            console.log(data)
+            setArray(data.results);
+        });
+        // response.catch(error => console.log(error)); // 에러처리
     }, []);
 
     return (
@@ -43,7 +49,7 @@ const View2 = () => {
             <h1 className="head">화면2</h1>
             <ol className="body">
                 {
-                    array.map((row, index) => <li key={index}>{row}</li>)
+                    array.map((row, index) => <li key={index}>{row.name}</li>)
                 }
             </ol>
         </div>
