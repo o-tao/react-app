@@ -11,8 +11,10 @@ import './index.css';
 // import Hooks from './hooks/Hooks';
 import ViewApp from './viewApp/ViewApp';
 import reportWebVitals from './reportWebVitals';
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const queryClient = new QueryClient();
 root.render(
     // <React.StrictMode>
     //     <App/>
@@ -23,7 +25,9 @@ root.render(
     //     <Account/>
     //     <File/>
     // <Hooks/>
-    <ViewApp/>
+    <QueryClientProvider client={queryClient}>
+        <ViewApp/>
+    </QueryClientProvider>
     // </React.StrictMode>
 );
 
