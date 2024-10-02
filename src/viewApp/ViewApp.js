@@ -4,10 +4,17 @@ import {useEffect, useState} from "react";
 
 const View1 = () => {
     const [array, setArray] = useState([]);
+
     useEffect(() => {
         const data = ["내용", "내용", "내용", "내용", "내용"];
         setArray(data);
     }, []);
+
+    const clickEvent = () => {
+        const data = ["내용", "내용", "내용", "내용", "내용"];
+        setArray([...array, ...data]);
+    };
+
     return (
         <div className="container">
             <h1 className="head">화면1</h1>
@@ -16,7 +23,7 @@ const View1 = () => {
                     array.map((row, index) => <li key={index}>{row}</li>)
                 }
             </ol>
-            <button type="button" className="more">더보기</button>
+            <button type="button" className="more" onClick={clickEvent}>더보기</button>
         </div>
     );
 }
