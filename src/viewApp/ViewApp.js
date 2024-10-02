@@ -2,8 +2,8 @@ import {BrowserRouter, Route, Routes, useNavigate} from 'react-router-dom';
 import './ViewApp.css';
 import {useEffect, useState} from "react";
 
-const getData = async (url) => {
-    const response = await fetch(url);
+const getData = async page => {
+    const response = await fetch(`/${page}.json`);
     return response.json();
 };
 
@@ -36,7 +36,7 @@ const View2 = () => {
     const [array, setArray] = useState([]);
 
     useEffect(() => {
-        const response = getData("/data1.json");
+        const response = getData("data1");
         response.then(data => {
             console.log(data)
             setArray(data.results);
@@ -45,7 +45,7 @@ const View2 = () => {
     }, []);
 
     const clickEvent = () => {
-        const response = getData("/data2.json");
+        const response = getData("data2");
         response.then(data => {
             setArray([...array, ...data.results]);
         })
