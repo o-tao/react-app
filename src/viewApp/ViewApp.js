@@ -60,10 +60,13 @@ const View2 = () => {
                     array.map((row, index) => <li key={index}>{row.name}</li>)
                 }
             </ol>
-            <button disabled={show} type="button" className="more" onClick={clickEvent}>더보기</button>
+            <button disabled={show} type="button" className="more" onClick={clickEvent}
+                    style={{display: show ? 'none' : ' '}}>더보기
+            </button>
         </div>
     );
 }
+
 const View3 = () => {
     return (
         <div className="container">
@@ -71,6 +74,7 @@ const View3 = () => {
         </div>
     );
 }
+
 const Home = () => {
     const navigate = useNavigate();
     return (
