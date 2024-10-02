@@ -5,7 +5,10 @@ import {useInView} from 'react-intersection-observer';
 import {useInfiniteQuery} from "@tanstack/react-query";
 
 const getData = async page => {
-    const response = await fetch(`/${page}.json`);
+    // const response = await fetch(`/${page}.json`);
+    const host = "http://localhost/";
+    // const response = await fetch(`${host}/api?page=${page}`); // http://localhost/api?page=1 URL주소
+    const response = await fetch(host + page); // http://localhost/api?page=1 URL주소
     return response.json();
 };
 
@@ -150,6 +153,36 @@ const View4 = () => {
     );
 }
 
+const View5 = () => {
+    const {data, fetchNextPage, hasNextPage} = usePaging("api?page=");
+    const {ref, inView} = useInView();
+
+    useEffect(() => {
+        if (inView && hasNextPage) {
+            fetchNextPage();
+        }
+    }, [inView]);
+
+    return (
+        <div className="container">
+            <h1 className="head">화면5</h1>
+            <ol className="body">
+                {
+                    data?.pages.map((page) => {
+                        return page.results.map((row, index) => {
+                            return (
+                                <li style={{padding: '100px 0'}} key={row.id}>{row.name}</li>
+                            )
+                        })
+                    })
+                }
+            </ol>
+            <button type="button" className="more" ref={ref} style={{display: hasNextPage ? "" : "none"}}>더보기
+            </button>
+        </div>
+    );
+}
+
 const Home = () => {
     const navigate = useNavigate();
     return (
@@ -168,6 +201,9 @@ const Home = () => {
                 <li>
                     <button type='button' className='link' onClick={() => navigate('/view4')}>화면4</button>
                 </li>
+                <li>
+                    <button type='button' className='link' onClick={() => navigate('/view5')}>화면5</button>
+                </li>
             </ul>
         </div>
     );
@@ -181,6 +217,7 @@ const ViewApp = () => {
                 <Route path="/view2" element={<View2/>}/>
                 <Route path="/view3" element={<View3/>}/>
                 <Route path="/view4" element={<View4/>}/>
+                <Route path="/view5" element={<View5/>}/>
             </Routes>
         </BrowserRouter>
     );
