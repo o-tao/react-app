@@ -2,8 +2,13 @@ import {BrowserRouter, Route, Routes, useNavigate} from 'react-router-dom';
 import './ViewApp.css';
 import {useEffect, useState} from "react";
 
-const getData = async () => {
+const getData1 = async () => {
     const response = await fetch("/data1.json");
+    return response.json();
+};
+
+const getData2 = async () => {
+    const response = await fetch("/data2.json");
     return response.json();
 };
 
@@ -36,13 +41,20 @@ const View2 = () => {
     const [array, setArray] = useState([]);
 
     useEffect(() => {
-        const response = getData();
+        const response = getData1();
         response.then(data => {
             console.log(data)
             setArray(data.results);
         });
         // response.catch(error => console.log(error)); // 에러처리
     }, []);
+
+    const clickEvent = () => {
+        const response = getData2();
+        response.then(data => {
+            setArray([...array, ...data.results]);
+        })
+    };
 
     return (
         <div className="container">
@@ -52,6 +64,7 @@ const View2 = () => {
                     array.map((row, index) => <li key={index}>{row.name}</li>)
                 }
             </ol>
+            <button type="button" className="more" onClick={clickEvent}>더보기</button>
         </div>
     );
 }
