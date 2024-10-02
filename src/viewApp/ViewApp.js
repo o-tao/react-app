@@ -35,11 +35,15 @@ const View1 = () => {
 const View2 = () => {
     const [array, setArray] = useState([]);
     const [nextPage, setNextPage] = useState(1);
+    const [show, setShow] = useState(false);
 
     useEffect(() => {
         const response = getData(`data${nextPage}`);
         response.then(data => {
             setArray([...array, ...data.results]);
+            if (data.page === data.total_pages) {
+                setShow(true);
+            }
         });
         // response.catch(error => console.log(error)); // 에러처리
     }, [nextPage]);
@@ -56,7 +60,7 @@ const View2 = () => {
                     array.map((row, index) => <li key={index}>{row.name}</li>)
                 }
             </ol>
-            <button type="button" className="more" onClick={clickEvent}>더보기</button>
+            <button disabled={show} type="button" className="more" onClick={clickEvent}>더보기</button>
         </div>
     );
 }
