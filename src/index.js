@@ -8,7 +8,8 @@ import './index.css';
 // import UserPage from "./userPage/UserPage";
 // import Account from "./account/Account";
 // import File from './files/File';
-import Hooks from './hooks/Hooks';
+// import Hooks from './hooks/Hooks';
+import ViewApp from './viewApp/ViewApp';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -21,7 +22,8 @@ root.render(
     //     <UserPage/>
     //     <Account/>
     //     <File/>
-    <Hooks/>
+    // <Hooks/>
+    <ViewApp/>
     // </React.StrictMode>
 );
 
