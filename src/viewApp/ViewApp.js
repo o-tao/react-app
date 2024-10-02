@@ -34,20 +34,23 @@ const View1 = () => {
 }
 const View2 = () => {
     const [array, setArray] = useState([]);
+    const [nextPage, setNextPage] = useState(0);
 
     useEffect(() => {
         const response = getData("data1");
         response.then(data => {
             console.log(data)
             setArray(data.results);
+            setNextPage(data.page + 1);
         });
         // response.catch(error => console.log(error)); // 에러처리
     }, []);
 
     const clickEvent = () => {
-        const response = getData("data2");
+        const response = getData(`data${nextPage}`);
         response.then(data => {
             setArray([...array, ...data.results]);
+            setNextPage(data.page + 1);
         })
     };
 
