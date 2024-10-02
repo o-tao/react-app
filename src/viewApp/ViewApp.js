@@ -1,6 +1,7 @@
 import {BrowserRouter, Route, Routes, useNavigate} from 'react-router-dom';
 import './ViewApp.css';
 import {useEffect, useState} from "react";
+import {useInView} from 'react-intersection-observer';
 
 const getData = async page => {
     const response = await fetch(`/${page}.json`);
@@ -68,9 +69,32 @@ const View2 = () => {
 }
 
 const View3 = () => {
+    const [array, setArray] = useState([]);
+    const [nextPage, setNextPage] = useState(1);
+    const {ref, inView} = useInView();
+    const [total, setTotal] = useState(3);
+
+    useEffect(() => {
+        if (inView && nextPage <= total) {
+            const response = getData(`data${nextPage}`);
+            response.then(data => {
+                setArray([...array, ...data.results]);
+                setNextPage(data.page + 1);
+                setTotal(data.total_pages);
+            });
+        }
+        // response.catch(error => console.log(error)); // 에러처리
+    }, [inView]);
+
     return (
         <div className="container">
             <h1 className="head">화면3</h1>
+            <ol className="body">
+                {
+                    array.map((row, index) => <li style={{padding: '30px 0'}} key={index}>{row.name}</li>)
+                }
+            </ol>
+            <button type="button" className="more" ref={ref}>더보기</button>
         </div>
     );
 }
