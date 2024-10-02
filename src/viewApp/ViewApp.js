@@ -2,10 +2,30 @@ import {BrowserRouter, Route, Routes, useNavigate} from 'react-router-dom';
 import './ViewApp.css';
 import {useEffect, useState} from "react";
 import {useInView} from 'react-intersection-observer';
+import {useInfiniteQuery} from "@tanstack/react-query";
 
 const getData = async page => {
     const response = await fetch(`/${page}.json`);
     return response.json();
+};
+
+const usePaging = (url) => {
+    return useInfiniteQuery({
+        queryKey: [''],
+
+        queryFn: ({pageParam}) => {
+            return getData(url + pageParam);
+        },
+
+        getNextPageParam: (last) => {
+            if (last.page < last.total_pages) {
+                return last.page + 1;
+            }
+            return undefined;
+        },
+
+        initialPageParam: 1
+    })
 };
 
 const View1 = () => {
@@ -33,6 +53,7 @@ const View1 = () => {
         </div>
     );
 }
+
 const View2 = () => {
     const [array, setArray] = useState([]);
     const [nextPage, setNextPage] = useState(1);
@@ -99,6 +120,36 @@ const View3 = () => {
     );
 }
 
+const View4 = () => {
+    const {data, fetchNextPage, hasNextPage} = usePaging("data");
+    const {ref, inView} = useInView();
+
+    useEffect(() => {
+        if (inView && hasNextPage) {
+            fetchNextPage();
+        }
+    }, [inView]);
+
+    return (
+        <div className="container">
+            <h1 className="head">화면4</h1>
+            <ol className="body">
+                {
+                    data?.pages.map((page) => {
+                        return page.results.map((row, index) => {
+                            return (
+                                <li style={{padding: '100px 0'}} key={row.id}>{row.name}</li>
+                            )
+                        })
+                    })
+                }
+            </ol>
+            <button type="button" className="more" ref={ref} style={{display: hasNextPage ? "" : "none"}}>더보기
+            </button>
+        </div>
+    );
+}
+
 const Home = () => {
     const navigate = useNavigate();
     return (
@@ -114,6 +165,9 @@ const Home = () => {
                 <li>
                     <button type='button' className='link' onClick={() => navigate('/view3')}>화면3</button>
                 </li>
+                <li>
+                    <button type='button' className='link' onClick={() => navigate('/view4')}>화면4</button>
+                </li>
             </ul>
         </div>
     );
@@ -126,6 +180,7 @@ const ViewApp = () => {
                 <Route path="/view1" element={<View1/>}/>
                 <Route path="/view2" element={<View2/>}/>
                 <Route path="/view3" element={<View3/>}/>
+                <Route path="/view4" element={<View4/>}/>
             </Routes>
         </BrowserRouter>
     );
