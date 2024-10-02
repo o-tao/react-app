@@ -12,7 +12,7 @@ const View1 = () => {
 
     const clickEvent = () => {
         const data = ["내용", "내용", "내용", "내용", "내용"];
-        setArray([...array, ...data]);
+        setArray([...array, ...data]); // ... -> array[0] ~ array[4]가 기존에 있을 때 "내용"을 신규 배열에 넣기위해 사용
     };
 
     return (
