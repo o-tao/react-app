@@ -9,12 +9,13 @@ import './index.css';
 // import Account from "./account/Account";
 // import File from './files/File';
 // import Hooks from './hooks/Hooks';
-import ViewApp from './viewApp/ViewApp';
+// import ViewApp from './viewApp/ViewApp';
+import MapAPI from './mapAPI/MapAPI';
 import reportWebVitals from './reportWebVitals';
-import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+// import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const queryClient = new QueryClient();
+// const queryClient = new QueryClient();
 root.render(
     // <React.StrictMode>
     //     <App/>
@@ -25,9 +26,10 @@ root.render(
     //     <Account/>
     //     <File/>
     // <Hooks/>
-    <QueryClientProvider client={queryClient}>
-        <ViewApp/>
-    </QueryClientProvider>
+    // <QueryClientProvider client={queryClient}>
+    //     <ViewApp/>
+    // </QueryClientProvider>
+    <MapAPI/>
     // </React.StrictMode>
 );
 
