@@ -12,15 +12,27 @@ function MapAPI() {
     useEffect(() => {
         const data = {
             location: {lat: 33.450701, lng: 126.570667},
-            level: 3
+            level: 4
         };
         setMap(data);
 
         const data2 = [
-            {lat: 33.450701, lng: 126.570667},
-            {lat: 33.450701, lng: 126.570667},
-            {lat: 33.450701, lng: 126.570667},
-            {lat: 33.450701, lng: 126.570667}
+            {
+                location: {lat: 33.450, lng: 126.570},
+                content: {text: 'Marker1'}
+            },
+            {
+                location: {lat: 33.451, lng: 126.571},
+                content: {text: 'Marker2'}
+            },
+            {
+                location: {lat: 33.452, lng: 126.572},
+                content: {text: 'Marker3'}
+            },
+            {
+                location: {lat: 33.453, lng: 126.573},
+                content: {text: 'Marker4'}
+            },
         ]
         setMarker(data2);
     }, []);
@@ -30,7 +42,11 @@ function MapAPI() {
             <h1 style={{textAlign: "center"}}>지도</h1>
             <Map center={map.location} style={{width: "100%", height: "350px"}} level={map.level}>
                 {
-                    marker.map((row, index) => <MapMarker key={index} position={row}/>)
+                    marker.map((row, index) => <MapMarker key={index} position={row.location}>
+                        <div style={{textAlign: "center"}}>
+                            <p style={{margin: '0'}}>{row.content.text}</p>
+                        </div>
+                    </MapMarker>)
                 }
             </Map>
         </>
