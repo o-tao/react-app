@@ -45,7 +45,7 @@ function MapAPI() {
                     marker.map((row, index) => <CustomOverlayMap key={index} position={row.location}>
                         <div style={{textAlign: "center", position: "absolute", top: "0"}}>
                             <p style={{margin: '0', backgroundColor: "white"}}>{row.content.text}</p>
-                            <img src={"oh.ico"} style={{width: '60%'}}/>
+                            <img src={"oh.ico"} style={{width: '60%'}} alt={"marker"}/>
                         </div>
                     </CustomOverlayMap>)
                 }
