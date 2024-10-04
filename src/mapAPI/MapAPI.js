@@ -40,7 +40,7 @@ function MapAPI() {
     return (
         <>
             <h1 style={{textAlign: "center"}}>지도</h1>
-            <Map center={map.location} style={{width: "100%", height: "350px"}} level={map.level}>
+            <Map center={map.location} style={{margin: "auto", width: "80%", height: "350px"}} level={map.level}>
                 {
                     marker.map((row, index) => <CustomOverlayMap key={index} position={row.location}>
                         <div style={{textAlign: "center", position: "absolute", top: "0"}}>
