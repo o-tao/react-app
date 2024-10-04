@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {Map, MapMarker, useKakaoLoader} from "react-kakao-maps-sdk";
+import {CustomOverlayMap, Map, useKakaoLoader} from "react-kakao-maps-sdk";
 
 function MapAPI() {
     const [map, setMap] = useState({location: {lat: 0, lng: 0}, level: 3});
@@ -42,11 +42,12 @@ function MapAPI() {
             <h1 style={{textAlign: "center"}}>지도</h1>
             <Map center={map.location} style={{width: "100%", height: "350px"}} level={map.level}>
                 {
-                    marker.map((row, index) => <MapMarker key={index} position={row.location}>
-                        <div style={{textAlign: "center"}}>
-                            <p style={{margin: '0'}}>{row.content.text}</p>
+                    marker.map((row, index) => <CustomOverlayMap key={index} position={row.location}>
+                        <div style={{textAlign: "center", position: "absolute", top: "0"}}>
+                            <p style={{margin: '0', backgroundColor: "white"}}>{row.content.text}</p>
+                            <img src={"oh.ico"} style={{width: '60%'}}/>
                         </div>
-                    </MapMarker>)
+                    </CustomOverlayMap>)
                 }
             </Map>
         </>
